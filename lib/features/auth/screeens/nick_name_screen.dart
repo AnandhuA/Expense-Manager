@@ -1,6 +1,7 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/features/auth/screeens/widgets/title_widget.dart';
+import 'package:expense_manager/features/home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -40,8 +41,11 @@ class _NickNameScreenState extends State<NickNameScreen> {
   void _continue() {
     if (!isValid) return;
 
-    final name = _nameController.text.trim();
-    print(name);
+    // final name = _nameController.text.trim();
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+    );
   }
 
   @override
