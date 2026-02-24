@@ -2,6 +2,7 @@ import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/constants/app_strings.dart';
+import 'package:expense_manager/features/auth/screeens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -25,7 +26,10 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
         curve: Curves.ease,
       );
     } else {
-      // TODO → navigate to login
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+      );
     }
   }
 
@@ -38,7 +42,9 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
         width: double.maxFinite,
         height: double.maxFinite,
@@ -156,7 +162,12 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
               Align(
                 alignment: AlignmentGeometry.topRight,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()),
+                    );
+                  },
                   child: Text(
                     "SKIP",
                     style: TextStyle(color: AppColors.textWhite),

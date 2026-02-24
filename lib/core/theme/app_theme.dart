@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
 class AppTheme {
-
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
@@ -33,14 +32,8 @@ class AppTheme {
 
       // ================= TEXT =================
       textTheme: const TextTheme(
-        bodyLarge: TextStyle(
-          color: AppColors.textWhite,
-          fontSize: 16,
-        ),
-        bodyMedium: TextStyle(
-          color: AppColors.textSecondary,
-          fontSize: 14,
-        ),
+        bodyLarge: TextStyle(color: AppColors.textWhite, fontSize: 16),
+        bodyMedium: TextStyle(color: AppColors.textWhite, fontSize: 14),
         titleLarge: TextStyle(
           color: AppColors.textWhite,
           fontSize: 20,
@@ -57,17 +50,14 @@ class AppTheme {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
-          textStyle: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+          textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
         ),
       ),
 
       // ================= INPUT FIELD =================
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: AppColors.inputFill,
+        fillColor: AppColors.textFeildBg,
         hintStyle: const TextStyle(color: AppColors.textHint),
 
         contentPadding: const EdgeInsets.symmetric(
@@ -77,20 +67,18 @@ class AppTheme {
 
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.inputBorder),
+          borderSide: const BorderSide(color: AppColors.textFeildBg, width: 0),
+          gapPadding: 0,
         ),
 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.inputBorder),
+          borderSide: const BorderSide(color: AppColors.textFeildBg, width: 0),
         ),
 
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(
-            color: AppColors.primary,
-            width: 1.5,
-          ),
+          borderSide: const BorderSide(color: AppColors.textFeildBg),
         ),
       ),
 
@@ -101,11 +89,7 @@ class AppTheme {
       ),
 
       // ================= ICON =================
-      iconTheme: const IconThemeData(
-        color: AppColors.textWhite,
-      ),
-
-   
+      iconTheme: const IconThemeData(color: AppColors.textWhite),
     );
   }
 }

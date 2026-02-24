@@ -5,6 +5,8 @@ class AppAssets {
   static const String syncIcon = "assets/icons/sync.svg";
   static const String deleteIcon = "assets/icons/delete.svg";
   static const String walkthroughBackArrow = "assets/icons/walkthrough_back_arrow.svg";
+  static const String back = "assets/icons/back.svg";
+  static const String checkIcon = "assets/icons/check.svg";
 
   //IMAGES
 

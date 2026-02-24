@@ -1,6 +1,18 @@
 import 'package:intl/intl.dart';
 
 class Formatters {
+
+static String maskPhone(String phone) {
+  if (phone.length < 6) return phone;
+
+  final first = phone.substring(0, 4);
+  final last = phone.substring(phone.length - 2);
+
+  return "$first****$last";
+}
+
+
+
   static DateTime? _parse(String? date) {
     if (date == null || date.isEmpty) return null;
 

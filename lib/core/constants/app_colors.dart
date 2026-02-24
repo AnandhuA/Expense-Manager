@@ -7,10 +7,13 @@ class AppColors {
   // ================= BACKGROUNDS =================
   static const Color scaffoldBg = Color(0xFF121212);
 
+  static const Color textFeildBg = Color(0xFF292929);
+
   /// Colors
 
   static const Color white = Colors.white;
   static const Color grey = Color.fromARGB(255, 112, 111, 111);
+  static const Color blue = Colors.blue;
 
   // ================= TEXT =================
   static const Color textPrimary = Color(0xFF1C1C1E);
