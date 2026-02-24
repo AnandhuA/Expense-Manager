@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
-
   // ================= PRIMARY =================
-  static const Color primary =  Color(0xFF312ECB) ;  
+  static const Color primary = Color(0xFF312ECB);
 
   // ================= BACKGROUNDS =================
-  static const Color scaffoldBg =  Color(0xFF121212);
+  static const Color scaffoldBg = Color(0xFF121212);
+
+  /// Colors
+
+  static const Color white = Colors.white;
+  static const Color grey = Color.fromARGB(255, 112, 111, 111);
 
   // ================= TEXT =================
   static const Color textPrimary = Color(0xFF1C1C1E);
@@ -15,8 +19,8 @@ class AppColors {
   static const Color textWhite = Colors.white;
 
   // ================= STATUS COLORS =================
-  static const Color success = Color(0xFF2ECC71);   // income
-  static const Color danger = Color(0xFFE74C3C);    // expense
+  static const Color success = Color(0xFF2ECC71); // income
+  static const Color danger = Color(0xFFE74C3C); // expense
   static const Color warning = Color(0xFFF1C40F);
 
   // ================= BORDERS =================
@@ -29,5 +33,4 @@ class AppColors {
 
   // ================= SHADOW =================
   static const Color shadow = Color(0x14000000);
-
 }
