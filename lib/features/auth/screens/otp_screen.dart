@@ -1,34 +1,30 @@
-import 'dart:developer';
 
 import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/utils/formatters.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
-import 'package:expense_manager/features/auth/screens/nick_name_screen.dart';
+import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';
 import 'package:expense_manager/features/auth/screens/widgets/otp_field.dart';
 import 'package:expense_manager/features/auth/screens/widgets/otp_timer.dart';
 import 'package:expense_manager/features/auth/screens/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OtpScreen extends StatelessWidget {
   final String phoneNumber;
-  OtpScreen({super.key, required this.phoneNumber});
+  final String? otp;
+  OtpScreen({super.key, required this.phoneNumber, required this.otp});
 
   final _formKey = GlobalKey<FormState>();
 
   String otpValue = "";
 
   void _verifyOtp({required BuildContext context}) {
-    log("work");
     if (_formKey.currentState!.validate()) {
       if (otpValue.length == 6) {
-        Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => NickNameScreen()),
-          (route) => false,
-        );
+        context.read<AuthBloc>().add(VerifyOtp(otpValue));
       }
     }
   }
@@ -38,7 +34,7 @@ class OtpScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: ScreenPadding (
+        child: ScreenPadding(
           child: Column(
             crossAxisAlignment: .start,
             children: [
@@ -68,7 +64,10 @@ class OtpScreen extends StatelessWidget {
               AppSpacing.hBox40,
               Form(
                 key: _formKey,
-                child: OtpInputField(onCompleted: (otp) => otpValue = otp),
+                child: OtpInputField(
+                  onCompleted: (otp) => otpValue = otp,
+                  otp: otp,
+                ),
               ),
               AppSpacing.hBox40,
 

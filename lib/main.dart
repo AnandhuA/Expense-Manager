@@ -1,7 +1,9 @@
 import 'package:expense_manager/core/services/preference_service.dart';
 import 'package:expense_manager/core/theme/app_theme.dart';
+import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';
 import 'package:expense_manager/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,10 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
-      home: SplashScreen(),
+    return MultiBlocProvider(
+      providers: [BlocProvider(create: (context) => AuthBloc())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.darkTheme,
+        home: SplashScreen(),
+      ),
     );
   }
 }

@@ -1,9 +1,8 @@
 class ApiEndpoints {
-
   static const String baseUrl = "https://appskilltest.zybotech.in";
 
   // AUTH
-  static const String sendOtp = "/auth/send-otp";
+  static const String sendOtp = "/auth/send-otp/";
   static const String createAccount = "/auth/create-account/";
 
   // CATEGORY
