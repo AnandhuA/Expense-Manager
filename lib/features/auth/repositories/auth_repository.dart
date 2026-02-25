@@ -1,7 +1,7 @@
 
 import 'package:dio/dio.dart';
 import 'package:expense_manager/core/constants/api_endpoints.dart';
-import 'package:expense_manager/core/services/dio_client.dart';
+import 'package:expense_manager/core/services/network/dio_client.dart';
 import 'package:expense_manager/core/utils/error.dart';
 import '../models/auth_response_model.dart';
 

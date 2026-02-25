@@ -1,10 +1,9 @@
-import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
+import 'package:expense_manager/features/categories/widgets/category_card.dart';
 import 'package:expense_manager/features/profile/widgets/profile_card_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({super.key});
@@ -99,54 +98,7 @@ class ProfileScreen extends StatelessWidget {
               Text("CATEGORIES"),
               AppSpacing.hBox10,
 
-              ProfileCardWidget(
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Expanded(
-                          child: TextField(
-                            decoration: InputDecoration(
-                              hintText: "New category Name",
-                              border: InputBorder.none,
-                            ),
-                          ),
-                        ),
-                        AppSpacing.wBox10,
-                        SizedBox(
-                          height: 50,
-                          width: 80,
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            // style: ElevatedButton.styleFrom(
-                            //   backgroundColor: ,
-                            // ),
-                            child: Icon(Icons.add),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Divider(),
-
-                    ListView.separated(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemCount: categories.length,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(categories[index]),
-                          trailing: IconButton(
-                            icon: SvgPicture.asset(AppAssets.deleteIcon2),
-                            onPressed: () {},
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) => Divider(),
-                    ),
-                  ],
-                ),
-              ),
+              CategoryCard(),
               AppSpacing.hBox20,
 
               /// ---------------- CLOUD SYNC ----------------

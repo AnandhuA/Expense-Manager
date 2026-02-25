@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:equatable/equatable.dart';
-import 'package:expense_manager/core/services/preference_service.dart';
+import 'package:expense_manager/core/services/storage/preference_service.dart';
 import 'package:expense_manager/features/auth/repositories/auth_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

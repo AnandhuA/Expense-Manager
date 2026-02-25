@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:expense_manager/core/constants/api_endpoints.dart';
-import 'package:expense_manager/core/services/preference_service.dart';
+import 'package:expense_manager/core/services/storage/preference_service.dart';
 
 class DioClient {
   DioClient._internal() {

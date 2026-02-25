@@ -1,5 +1,6 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
-import 'package:expense_manager/core/services/preference_service.dart';
+import 'package:expense_manager/core/services/storage/preference_service.dart';
+import 'package:expense_manager/features/dashboard/screens/home_screen.dart';
 import 'package:expense_manager/features/walkthrough/walkthrough_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -28,10 +29,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
     if (token != null && token.isNotEmpty) {
       // go to home
-      // Navigator.pushReplacement(
-      //   context,
-      //   MaterialPageRoute(builder: (_) => const HomeScreen()),
-      // );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const HomeScreen()),
+      );
     } else {
       // go to login / walkthrough
       Navigator.pushReplacement(
