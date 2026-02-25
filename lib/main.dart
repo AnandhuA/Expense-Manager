@@ -3,6 +3,7 @@ import 'package:expense_manager/core/theme/app_theme.dart';
 import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';
 import 'package:expense_manager/features/categories/bloc/category_bloc.dart';
 import 'package:expense_manager/features/splash/splash_screen.dart';
+import 'package:expense_manager/features/transaction/bloc/transaction_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
           create: (_) =>
               CategoryBloc()..add(LoadCategories()), // load immediately
         ),
+        BlocProvider(create: (_) => TransactionBloc()..add(LoadTransactions())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
