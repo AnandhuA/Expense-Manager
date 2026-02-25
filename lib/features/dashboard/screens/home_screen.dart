@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final pages = [
     const Center(child: DashboardTab()),
     const Center(child: TransactionsScreen()),
-    const Center(child: ProfileScreen()),
+    Center(child: ProfileScreen()),
   ];
 
   @override
@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    
     );
   }
 }
