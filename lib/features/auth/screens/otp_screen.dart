@@ -4,10 +4,11 @@ import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/utils/formatters.dart';
-import 'package:expense_manager/features/auth/screeens/nick_name_screen.dart';
-import 'package:expense_manager/features/auth/screeens/widgets/otp_field.dart';
-import 'package:expense_manager/features/auth/screeens/widgets/otp_timer.dart';
-import 'package:expense_manager/features/auth/screeens/widgets/title_widget.dart';
+import 'package:expense_manager/core/widgets/screen_padding.dart';
+import 'package:expense_manager/features/auth/screens/nick_name_screen.dart';
+import 'package:expense_manager/features/auth/screens/widgets/otp_field.dart';
+import 'package:expense_manager/features/auth/screens/widgets/otp_timer.dart';
+import 'package:expense_manager/features/auth/screens/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -37,8 +38,7 @@ class OtpScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(18),
+        child: ScreenPadding (
           child: Column(
             crossAxisAlignment: .start,
             children: [

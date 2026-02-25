@@ -2,7 +2,7 @@ import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/constants/app_strings.dart';
-import 'package:expense_manager/features/auth/screeens/login_screen.dart';
+import 'package:expense_manager/features/auth/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

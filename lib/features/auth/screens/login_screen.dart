@@ -1,7 +1,8 @@
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/utils/validators.dart';
-import 'package:expense_manager/features/auth/screeens/otp_screen.dart';
-import 'package:expense_manager/features/auth/screeens/widgets/title_widget.dart';
+import 'package:expense_manager/core/widgets/screen_padding.dart';
+import 'package:expense_manager/features/auth/screens/otp_screen.dart';
+import 'package:expense_manager/features/auth/screens/widgets/title_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -15,8 +16,7 @@ class LoginScreen extends StatelessWidget {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18),
+        child: ScreenPadding(
           child: Column(
             crossAxisAlignment: .start,
             children: [

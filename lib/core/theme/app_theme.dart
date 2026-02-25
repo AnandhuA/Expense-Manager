@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../constants/app_colors.dart';
 
 class AppTheme {
@@ -84,7 +85,7 @@ class AppTheme {
 
       // ================= DIVIDER =================
       dividerTheme: const DividerThemeData(
-        color: AppColors.divider,
+        color: AppColors.boderColor,
         thickness: 1,
       ),
 

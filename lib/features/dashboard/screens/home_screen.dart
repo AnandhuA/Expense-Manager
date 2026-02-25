@@ -1,4 +1,7 @@
-import 'package:expense_manager/features/home/widgets/floating_navbar.dart';
+import 'package:expense_manager/features/dashboard/screens/dashboard_tab.dart';
+import 'package:expense_manager/features/dashboard/widgets/floating_navbar.dart';
+import 'package:expense_manager/features/profile/screens/profile_screen.dart';
+import 'package:expense_manager/features/transaction/screens/transactions_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,9 +15,9 @@ class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
 
   final pages = [
-    const Center(child: Text("Dashboard")),
-    const Center(child: Text("Sync")),
-    const Center(child: Text("Profile")),
+    const Center(child: DashboardTab()),
+    const Center(child: TransactionsScreen()),
+    const Center(child: ProfileScreen()),
   ];
 
   @override
@@ -31,6 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
+    
     );
   }
 }

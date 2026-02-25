@@ -1,7 +1,8 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
-import 'package:expense_manager/features/auth/screeens/widgets/title_widget.dart';
-import 'package:expense_manager/features/home/home_screen.dart';
+import 'package:expense_manager/core/widgets/screen_padding.dart';
+import 'package:expense_manager/features/auth/screens/widgets/title_widget.dart';
+import 'package:expense_manager/features/dashboard/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -53,8 +54,7 @@ class _NickNameScreenState extends State<NickNameScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(18),
+        child: ScreenPadding(
           child: Column(
             children: [
               AppSpacing.hBox25,

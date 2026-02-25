@@ -9,11 +9,19 @@ class AppColors {
 
   static const Color textFeildBg = Color(0xFF292929);
 
+  static const Color navBarBg = Color(0xFF262626);
+  static const Color creditText = Colors.green;
+  static const Color debitText = Colors.red;
+
+  static const Color boderColor = Color.fromARGB(255, 41, 41, 41);
+
+
   /// Colors
 
   static const Color white = Colors.white;
   static const Color grey = Color.fromARGB(255, 112, 111, 111);
   static const Color blue = Colors.blue;
+  static const Color green = Colors.green;
 
   // ================= TEXT =================
   static const Color textPrimary = Color(0xFF1C1C1E);
@@ -23,7 +31,7 @@ class AppColors {
 
   // ================= STATUS COLORS =================
   static const Color success = Color(0xFF2ECC71); // income
-  static const Color danger = Color(0xFFE74C3C); // expense
+  static const Color error = Color(0xFFE74C3C); // expense
   static const Color warning = Color(0xFFF1C40F);
 
   // ================= BORDERS =================
