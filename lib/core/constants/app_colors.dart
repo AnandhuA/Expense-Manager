@@ -10,6 +10,21 @@ class AppColors {
   static const Color textFeildBg = Color(0xFF292929);
 
   static const Color navBarBg = Color(0xFF262626);
+
+  static const Color incomeCardBg = Color(0xFF0E7701);
+  static const Color incomeCardBgDark = Color(0xFF042201); //for gradient
+  static const Color expenseCardBg = Color(0xFFAE0303);
+  static const Color expenseCardBgDark = Color(0xFF2C0101); //for gradient
+
+  static const Color limitCardBg = Color(0xFF191919);
+  static const Color limitCardBoder = Color(0xFF272727);
+
+  static const Color progressBarColor = Color(0xFF106F1D);
+  static const Color progressBarBgColor = Color(0xFFD9D9D9);
+
+  static const Color bottomSheetBg = Color(0xFF1F1F1F);
+
+
   static const Color creditText = Colors.green;
   static const Color debitText = Colors.red;
 
@@ -22,6 +37,7 @@ class AppColors {
   static const Color grey = Color.fromARGB(255, 112, 111, 111);
   static const Color blue = Colors.blue;
   static const Color green = Colors.green;
+  static const Color black = Colors.black;
 
   // ================= TEXT =================
   static const Color textPrimary = Color(0xFF1C1C1E);

@@ -72,10 +72,10 @@ class FloatingNavBar extends StatelessWidget {
             : null,
         child: SvgPicture.asset(
           icon,
-          width: 28,
-          height: 28,
+          width: 22,
+          height: 22,
           colorFilter: ColorFilter.mode(
-            isActive ? Colors.white : Colors.white60,
+          AppColors.white,
             BlendMode.srcIn,
           ),
         ),
