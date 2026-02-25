@@ -1,6 +1,7 @@
 import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
+import 'package:expense_manager/features/transaction/widgets/type_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class AddTransactionBottomSheet extends StatefulWidget {
@@ -50,12 +51,12 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet> {
               ),
               child: Row(
                 children: [
-                  _typeButton(
+                  TypeButtonWidget(
                     title: "Expense",
                     selected: isExpense,
                     onTap: () => setState(() => isExpense = true),
                   ),
-                  _typeButton(
+                  TypeButtonWidget(
                     title: "Income",
                     selected: !isExpense,
                     onTap: () => setState(() => isExpense = false),
@@ -67,14 +68,19 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet> {
             AppSpacing.hBox15,
 
             /// TITLE
-            _inputField(hint: "Title"),
+       
+            TextField(
+              keyboardType: TextInputType.text,
+              decoration: InputDecoration(hint: Text("Title")),
+            ),
 
             AppSpacing.hBox10,
 
             /// AMOUNT
-            _inputField(
-              hint: "Amount ( ₹ )",
+            
+            TextField(
               keyboardType: TextInputType.number,
+              decoration: InputDecoration(hint: Text("Amount ( ₹ )")),
             ),
 
             const SizedBox(height: 16),
@@ -157,52 +163,4 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet> {
     );
   }
 
-  /// TOGGLE BUTTON
-  Widget _typeButton({
-    required String title,
-    required bool selected,
-    required VoidCallback onTap,
-  }) {
-    return Expanded(
-      child: GestureDetector(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-
-          decoration: BoxDecoration(
-            color: selected ? AppColors.green : AppColors.shadow,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: TextStyle(
-                color: AppColors.white,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  /// INPUT FIELD
-  Widget _inputField({
-    required String hint,
-    TextInputType keyboardType = TextInputType.text,
-  }) {
-    return TextField(
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: const Color(0xFF2A2A2A),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-          borderSide: BorderSide.none,
-        ),
-      ),
-    );
-  }
 }
