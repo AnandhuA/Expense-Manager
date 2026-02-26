@@ -2,8 +2,10 @@ import 'package:expense_manager/core/services/storage/preference_service.dart';
 import 'package:expense_manager/core/theme/app_theme.dart';
 import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';
 import 'package:expense_manager/features/categories/bloc/category_bloc.dart';
+import 'package:expense_manager/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:expense_manager/features/splash/splash_screen.dart';
 import 'package:expense_manager/features/transaction/bloc/transaction_bloc.dart';
+import 'package:expense_manager/features/transaction/repositories/transaction_local_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,9 +25,18 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthBloc()),
         BlocProvider(
           create: (_) =>
-              CategoryBloc()..add(LoadCategories()), // load immediately
+              CategoryBloc()..add(LoadCategories()), 
         ),
-        BlocProvider(create: (_) => TransactionBloc()..add(LoadTransactions())),
+        BlocProvider(
+          create: (_) => DashboardBloc()..add(const LoadDashboard()),
+        ),
+
+        BlocProvider(
+          create: (context) => TransactionBloc(
+            repo: TransactionLocalRepo(),
+            dashboardBloc: context.read<DashboardBloc>(),
+          )..add(LoadTransactions()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

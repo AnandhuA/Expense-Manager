@@ -20,6 +20,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<SendOtp>(_sentOtp);
     on<VerifyOtp>(_verifyOtp);
     on<CreateAccount>(_createAccount);
+    on<LogOutAccount>(_logOutAccount);
+    on<LoadProfile>(_loadProfile);
+    on<UpdateNickname>(_updateNickname);
   }
 
   FutureOr<void> _sentOtp(SendOtp event, Emitter<AuthState> emit) async {
@@ -31,6 +34,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       }
       if (res.nickname != null) {
         await preferencesService.saveNickname(res.nickname!);
+        log("name saved ${res.nickname}");
       }
 
       userExists = res.userExists;
@@ -69,13 +73,52 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if (res.token != null) {
         await preferencesService.saveToken(res.token!);
       }
-      if (res.nickname != null) {
-        await preferencesService.saveNickname(res.nickname!);
-      }
+      
+      await preferencesService.saveNickname(event.nickname);
 
       emit(Authenticated());
     } catch (e) {
       emit(AuthError(e.toString()));
     }
+  }
+
+  FutureOr<void> _logOutAccount(
+    LogOutAccount event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+
+    try {
+      await preferencesService.clearAll();
+
+      userExists = false;
+      phone = null;
+      otp = null;
+
+      emit(AuthLoggedOut());
+    } catch (e) {
+      emit(AuthError(e.toString()));
+    }
+  }
+
+  FutureOr<void> _loadProfile(
+    LoadProfile event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+
+    final name = preferencesService.nickname ?? "";
+    emit(ProfileLoaded(name));
+  }
+
+  FutureOr<void> _updateNickname(
+    UpdateNickname event,
+    Emitter<AuthState> emit,
+  ) async {
+    emit(AuthLoading());
+
+    await preferencesService.saveNickname(event.nickname);
+
+    emit(ProfileLoaded(event.nickname));
   }
 }

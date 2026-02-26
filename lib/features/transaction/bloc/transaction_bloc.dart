@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:expense_manager/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:expense_manager/features/transaction/models/transaction_with_category_model.dart';
 import 'package:expense_manager/features/transaction/repositories/transaction_local_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,8 +10,10 @@ part 'transaction_event.dart';
 part 'transaction_state.dart';
 
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
-  final TransactionLocalRepo repo = TransactionLocalRepo();
-  TransactionBloc() : super(TransactionInitial()) {
+  final TransactionLocalRepo repo;
+  final DashboardBloc dashboardBloc;
+  TransactionBloc({required this.repo, required this.dashboardBloc})
+    : super(TransactionInitial()) {
     on<LoadTransactions>(_loadTransactions);
     on<AddTransaction>(_addTransaction);
     on<DeleteTransaction>(_deleteTransaction);
@@ -43,6 +46,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       final list = await repo.getTransactions();
       emit(TransactionLoaded(transactions: list));
+      dashboardBloc.add(const RefreshDashboard());
     } catch (e) {
       emit(TransactionError(e.toString()));
     }
@@ -57,6 +61,7 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
 
       final list = await repo.getTransactions();
       emit(TransactionLoaded(transactions: list));
+      dashboardBloc.add(const RefreshDashboard());
     } catch (e) {
       emit(TransactionError(e.toString()));
     }
