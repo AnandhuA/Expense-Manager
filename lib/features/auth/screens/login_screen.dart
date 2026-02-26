@@ -5,7 +5,7 @@ import 'package:expense_manager/core/widgets/screen_padding.dart';
 import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';
 import 'package:expense_manager/features/auth/screens/nick_name_screen.dart';
 import 'package:expense_manager/features/auth/screens/otp_screen.dart';
-import 'package:expense_manager/features/auth/screens/widgets/title_widget.dart';
+import 'package:expense_manager/features/auth/widgets/title_widget.dart';
 import 'package:expense_manager/features/dashboard/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

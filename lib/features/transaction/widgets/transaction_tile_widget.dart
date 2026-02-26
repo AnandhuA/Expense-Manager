@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 class TransactionTileWidget extends StatelessWidget {
   final String title;
   final String category;
-  final DateTime date;
+  final String date;
   final double amount;
   final bool isCredit;
   final VoidCallback? onDelete;
@@ -73,8 +73,8 @@ class TransactionTileWidget extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                "${date.day} ${Formatters.monthName(date.month)} ${date.year}",
-                style: TextStyle(fontSize: 12, color: Colors.grey.shade400),
+                Formatters.formatToReadable(date),
+                style: TextStyle(fontSize: 12, color: AppColors.textHint),
               ),
               const SizedBox(height: 4),
               Text(

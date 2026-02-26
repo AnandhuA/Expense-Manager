@@ -2,10 +2,10 @@ import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/utils/media_query.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
-import 'package:expense_manager/core/widgets/transaction_tile_widget.dart';
 import 'package:expense_manager/features/dashboard/widgets/card_widget.dart';
 import 'package:expense_manager/features/dashboard/widgets/limit_card_widget.dart';
 import 'package:expense_manager/features/transaction/screens/add_transaction_bottom_sheet.dart';
+import 'package:expense_manager/features/transaction/screens/transaction_list.dart';
 import 'package:flutter/material.dart';
 
 class DashboardTab extends StatelessWidget {
@@ -58,25 +58,20 @@ class DashboardTab extends StatelessWidget {
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
                 ),
+
+//--------------- transation list ---------- 
                 ScreenPadding(
                   
-                  child: ListView.builder(
+                  child: TransactionList(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.only(bottom: 100),
-                    itemCount: 10,
-                    itemBuilder: (context, index) => TransactionTileWidget(
-                      title: "Title",
-                      category: "category",
-                      date: DateTime.now(),
-                      amount: 200,
-                      isCredit: index % 2 == 0,
-                    ),
-                  ),
+                  )
                 ),
               ],
             ),
           ),
+
+//------------- add transation button ----------- 
           Positioned(
             bottom: MQ.h(context, 15),
             right: MQ.w(context, 8),
