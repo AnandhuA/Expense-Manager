@@ -1,7 +1,8 @@
 import 'dart:developer';
 
-import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
+import 'package:expense_manager/core/widgets/app_snackbar.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
 import 'package:expense_manager/features/categories/bloc/category_bloc.dart';
 import 'package:expense_manager/features/transaction/bloc/transaction_bloc.dart';
@@ -174,7 +175,16 @@ class _AddTransactionBottomSheetState extends State<AddTransactionBottomSheet> {
                             type: type,
                             categoryId: selectedCategoryId!,
                           ),
+                          
                         );
+                        AppSnackBar.success(
+                          context,
+                          "Transaction added successfully",
+                        );
+                      } else if (selectedCategoryId == null) {
+                        AppSnackBar.error(context, "Selete Category");
+                      } else {
+                        AppSnackBar.error(context, "Fill all Feilds");
                       }
                     },
                     child: const Text("Save"),

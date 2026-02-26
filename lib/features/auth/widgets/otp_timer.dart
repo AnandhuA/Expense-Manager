@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:expense_manager/core/constants/app_colors.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class OtpTimer extends StatefulWidget {

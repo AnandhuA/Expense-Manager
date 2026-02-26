@@ -1,4 +1,4 @@
-import 'package:expense_manager/core/constants/app_colors.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
 import 'package:expense_manager/core/widgets/app_alert_dialog.dart';
 import 'package:expense_manager/features/transaction/bloc/transaction_bloc.dart';
 import 'package:expense_manager/features/transaction/widgets/transaction_tile_widget.dart';
@@ -54,6 +54,7 @@ class TransactionList extends StatelessWidget {
                       onConfirm: () {
                         context.read<TransactionBloc>().add(
                           DeleteTransaction(transation.id),
+                          
                         );
                       },
                     ),

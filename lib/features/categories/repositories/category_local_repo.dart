@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
-import 'package:expense_manager/core/services/local_db/app_database.dart';
-import 'package:expense_manager/core/services/local_db/db_tables.dart';
+import 'package:expense_manager/core/services/database/app_database.dart';
+import 'package:expense_manager/core/services/database/db_tables.dart';
 import '../models/category_model.dart';
 
 class CategoryLocalRepo {

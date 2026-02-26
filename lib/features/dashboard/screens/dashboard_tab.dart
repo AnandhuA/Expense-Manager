@@ -1,5 +1,5 @@
-import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
 import 'package:expense_manager/core/utils/media_query.dart';
 import 'package:expense_manager/core/widgets/app_alert_dialog.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
@@ -11,6 +11,7 @@ import 'package:expense_manager/features/transaction/screens/add_transaction_bot
 import 'package:expense_manager/features/transaction/widgets/transaction_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class DashboardTab extends StatelessWidget {
   const DashboardTab({super.key});
@@ -22,6 +23,19 @@ class DashboardTab extends StatelessWidget {
         children: [
           BlocBuilder<DashboardBloc, DashboardState>(
             builder: (context, state) {
+              if (state is DashboardLoading) {
+                return Center(
+                  child: SpinKitThreeBounce(color: AppColors.white, size: 20),
+                );
+              }
+              if (state is DashboardError) {
+                return Center(
+                  child: Text(
+                    state.message,
+                    style: TextStyle(color: AppColors.error),
+                  ),
+                );
+              }
               if (state is DashboardLoaded) {
                 return SizedBox(
                   height: MQ.height(context),

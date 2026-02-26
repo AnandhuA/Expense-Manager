@@ -1,5 +1,5 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
-import 'package:expense_manager/core/constants/app_colors.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';
 import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';

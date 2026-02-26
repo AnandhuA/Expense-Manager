@@ -27,12 +27,3 @@ class AuthError extends AuthState {
   const AuthError(this.message);
 }
 
-
-class ProfileLoaded extends AuthState {
-  final String nickname;
-
-  const ProfileLoaded(this.nickname);
-
-  @override
-  List<Object?> get props => [nickname];
-}

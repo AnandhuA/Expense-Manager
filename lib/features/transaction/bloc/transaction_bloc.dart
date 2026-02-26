@@ -12,6 +12,8 @@ part 'transaction_state.dart';
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   final TransactionLocalRepo repo;
   final DashboardBloc dashboardBloc;
+  // final _notifier = NotificationService.instance;
+
   TransactionBloc({required this.repo, required this.dashboardBloc})
     : super(TransactionInitial()) {
     on<LoadTransactions>(_loadTransactions);
@@ -45,8 +47,34 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
       );
 
       final list = await repo.getTransactions();
+
+
+  // if (event.type == "debit") {
+  //     final now = DateTime.now();
+
+  //     final monthlyExpense = list
+  //         .where((t) =>
+  //             t.type == "debit" &&
+  //             t.timestamp.month == now.month &&
+  //             t.timestamp.year == now.year)
+  //         .fold<double>(0, (sum, t) => sum + t.amount);
+
+  //     final limit = _prefs.alertLimit;
+
+  //     if (monthlyExpense > limit) {
+  //       await _notifier.showLimitAlert(
+  //         limit: limit,
+  //         spent: monthlyExpense,
+  //       );
+  //     }
+  //   }
+
+
       emit(TransactionLoaded(transactions: list));
       dashboardBloc.add(const RefreshDashboard());
+
+
+
     } catch (e) {
       emit(TransactionError(e.toString()));
     }

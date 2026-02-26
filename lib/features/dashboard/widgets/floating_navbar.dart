@@ -1,5 +1,5 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
-import 'package:expense_manager/core/constants/app_colors.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
 import 'package:expense_manager/core/utils/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

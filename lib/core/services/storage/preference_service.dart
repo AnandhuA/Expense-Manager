@@ -45,7 +45,26 @@ class PreferencesService {
     await _prefs?.clear();
   }
 
-  // LOGIN CHECK
 
-  bool get isLoggedIn => token != null && token!.isNotEmpty;
+
+// SAVE ALERT LIMIT
+  Future<void> saveAlertLimit(double limit) async {
+    await _prefs?.setDouble(AppKeys.alertLimit, limit);
+  }
+
+  // GET ALERT LIMIT
+  double get alertLimit => _prefs?.getDouble(AppKeys.alertLimit) ?? 1000;
+
+  // MONTHLY ALERT FLAG (to avoid multiple notifications)
+  Future<void> markAlertTriggered(String monthKey) async {
+    await _prefs?.setString(AppKeys.alertTriggeredMonth, monthKey);
+  }
+
+  String? get alertTriggeredMonth =>
+      _prefs?.getString(AppKeys.alertTriggeredMonth);
+
+// RESET MONTH FLAG (optional)
+  Future<void> clearAlertTrigger() async {
+    await _prefs?.remove(AppKeys.alertTriggeredMonth);
+  }
 }

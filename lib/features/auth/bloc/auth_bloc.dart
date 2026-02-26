@@ -21,8 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<VerifyOtp>(_verifyOtp);
     on<CreateAccount>(_createAccount);
     on<LogOutAccount>(_logOutAccount);
-    on<LoadProfile>(_loadProfile);
-    on<UpdateNickname>(_updateNickname);
+   
   }
 
   FutureOr<void> _sentOtp(SendOtp event, Emitter<AuthState> emit) async {
@@ -101,24 +100,5 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  FutureOr<void> _loadProfile(
-    LoadProfile event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(AuthLoading());
-
-    final name = preferencesService.nickname ?? "";
-    emit(ProfileLoaded(name));
-  }
-
-  FutureOr<void> _updateNickname(
-    UpdateNickname event,
-    Emitter<AuthState> emit,
-  ) async {
-    emit(AuthLoading());
-
-    await preferencesService.saveNickname(event.nickname);
-
-    emit(ProfileLoaded(event.nickname));
-  }
+ 
 }

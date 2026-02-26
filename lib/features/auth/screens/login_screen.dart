@@ -1,4 +1,4 @@
-import 'package:expense_manager/core/constants/app_colors.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
 import 'package:expense_manager/core/utils/validators.dart';
 import 'package:expense_manager/core/widgets/screen_padding.dart';

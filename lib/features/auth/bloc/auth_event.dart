@@ -31,12 +31,4 @@ class CreateAccount extends AuthEvent {
 class LogOutAccount extends AuthEvent {}
 
 
-class LoadProfile extends AuthEvent {}
 
-class UpdateNickname extends AuthEvent {
-  final String nickname;
-  const UpdateNickname(this.nickname);
-
-  @override
-  List<Object?> get props => [nickname];
-}

@@ -1,5 +1,5 @@
-import 'package:expense_manager/core/services/local_db/app_database.dart';
-import 'package:expense_manager/core/services/local_db/db_tables.dart';
+import 'package:expense_manager/core/services/database/app_database.dart';
+import 'package:expense_manager/core/services/database/db_tables.dart';
 import 'package:expense_manager/features/transaction/models/transaction_model.dart';
 import 'package:expense_manager/features/transaction/models/transaction_with_category_model.dart';
 import 'package:uuid/uuid.dart';

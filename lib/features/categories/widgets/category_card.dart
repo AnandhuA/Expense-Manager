@@ -1,6 +1,7 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
-import 'package:expense_manager/core/constants/app_colors.dart';
 import 'package:expense_manager/core/constants/app_spacing.dart';
+import 'package:expense_manager/core/theme/app_colors.dart';
+import 'package:expense_manager/core/widgets/app_snackbar.dart';
 import 'package:expense_manager/features/categories/bloc/category_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,6 @@ class _CategoryCardState extends State<CategoryCard> {
       ),
       child: Column(
         children: [
-          /// 🔹 INPUT ROW
           Row(
             children: [
               Expanded(
@@ -52,6 +52,12 @@ class _CategoryCardState extends State<CategoryCard> {
                       context.read<CategoryBloc>().add(AddCategory(name));
 
                       controller.clear();
+                      AppSnackBar.success(
+                        context,
+                        "Category added successfully",
+                      );
+                    } else {
+                      AppSnackBar.error(context, "Empty");
                     }
                   },
                   child: const Icon(Icons.add),
@@ -62,7 +68,6 @@ class _CategoryCardState extends State<CategoryCard> {
 
           const Divider(),
 
-          /// 🔹 CATEGORY LIST FROM BLOC
           BlocBuilder<CategoryBloc, CategoryState>(
             builder: (context, state) {
               if (state is CategoryLoading) {
@@ -109,6 +114,7 @@ class _CategoryCardState extends State<CategoryCard> {
                           context.read<CategoryBloc>().add(
                             DeleteCategory(cat.id),
                           );
+                          AppSnackBar.success(context, "Delete successfully");
                         },
                       ),
                     );
