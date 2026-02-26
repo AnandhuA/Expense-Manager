@@ -8,21 +8,16 @@ part 'sync_event.dart';
 part 'sync_state.dart';
 
 class SyncBloc extends Bloc<SyncEvent, SyncState> {
-    final SyncRepository repo = SyncRepository();
+  final SyncRepository repo = SyncRepository();
   SyncBloc() : super(SyncInitial()) {
     on<StartSync>(_startSync);
   }
 
-  FutureOr<void> _startSync(StartSync event, Emitter<SyncState> emit) async{
-
-      emit(SyncInProgress());
+  FutureOr<void> _startSync(StartSync event, Emitter<SyncState> emit) async {
+    emit(SyncInProgress());
 
     try {
-      await repo.syncDeletedTransactions();
-      await repo.syncDeletedCategories();
-
-      await repo.syncCategories();
-      await repo.syncTransactions();
+      await repo.syncAll();
 
       emit(SyncSuccess());
     } catch (e) {

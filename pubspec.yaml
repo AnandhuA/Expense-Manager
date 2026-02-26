@@ -6,10 +6,10 @@ publish_to: 'none'
 
 version: 1.0.0+1
 
-# environment:
-#   sdk: ^3.11.0
 environment:
-  sdk: ^3.10.0
+  sdk: ^3.11.0
+# environment:
+#   sdk: ^3.10.0
 
 
 dependencies:
@@ -28,6 +28,7 @@ dependencies:
   flutter_spinkit: ^5.2.2
   path: ^1.9.1
   uuid: ^4.5.3
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

@@ -12,7 +12,7 @@ class LocalDb {
     final res = await db.query(
       DbTables.transactions,
       columns: ['id'],
-      where: 'is_deleted = 1',
+      where: 'is_deleted = 1 AND is_synced = 1',
     );
     return res.map((e) => e['id'] as String).toList();
   }
@@ -32,7 +32,7 @@ class LocalDb {
     final res = await db.query(
       DbTables.categories,
       columns: ['id'],
-      where: 'is_deleted = 1',
+      where: 'is_deleted = 1 AND is_synced = 1',
     );
     return res.map((e) => e['id'] as String).toList();
   }

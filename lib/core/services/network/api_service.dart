@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
+import 'package:expense_manager/core/constants/api_endpoints.dart';
 import 'package:expense_manager/core/services/network/dio_client.dart';
 import 'package:expense_manager/features/categories/models/category_model.dart';
 import 'package:expense_manager/features/transaction/models/transaction_model.dart';
@@ -9,26 +12,52 @@ class ApiService {
   // ---------------- CATEGORIES ----------------
 
   /// Upload Categories (Batch)
-  Future<List<String>> uploadCategories(
-    List<CategoryModel> categories,
-  ) async {
-    final response = await _dio.post(
-      "/categories/add/",
-      data: {
-        "categories": categories.map((e) => e.toMap()).toList(),
-      },
-    );
+  Future<List<String>> uploadCategories(List<CategoryModel> categories) async {
+    try {
+      List<String> syncedIds = [];
 
-    return List<String>.from(response.data["synced_ids"]);
+      for (final category in categories) {
+        final formData = FormData.fromMap({
+          "name": category.name,
+          "category_id": category.id,
+        });
+
+        final response = await _dio.post(
+          ApiEndpoints.addCategories,
+          data: formData,
+        );
+
+        if (response.data["status"] == "success") {
+          syncedIds.add(category.id);
+        }
+      }
+
+      return syncedIds;
+    } catch (e) {
+      log("----$e");
+      rethrow;
+    }
   }
 
   /// Delete Categories (Batch)
-  Future<void> deleteCategories(List<String> ids) async {
+ Future<void> deleteCategory(String id) async {
+  try {
+    final formData = FormData.fromMap({
+      "category_id": id,
+    });
+
     await _dio.delete(
-      "/categories/delete/",
-      data: {"ids": ids},
+      ApiEndpoints.deleteCategories,
+      data: formData,
     );
+  } on DioException catch (e) {
+    if (e.response?.statusCode == 404) {
+      // Already deleted in backend — treat as success
+      return;
+    }
+    rethrow;
   }
+}
 
   // ---------------- TRANSACTIONS ----------------
 
@@ -36,21 +65,39 @@ class ApiService {
   Future<List<String>> uploadTransactions(
     List<TransactionModel> transactions,
   ) async {
-    final response = await _dio.post(
-      "/transactions/add/",
-      data: {
-        "transactions": transactions.map((e) => e.toMap()).toList(),
-      },
-    );
+    try {
+      final response = await _dio.post(
+        ApiEndpoints.addTransactions,
+        data: {"transactions": transactions.map((e) => e.toMap()).toList()},
+      );
+      final data = response.data;
 
-    return List<String>.from(response.data["synced_ids"]);
+      if (data == null || data["synced_ids"] == null) {
+        return [];
+      }
+      return List<String>.from(response.data["synced_ids"]);
+    } catch (e) {
+      log("===$e");
+      rethrow;
+    }
   }
 
-  /// Delete Transactions (Batch)
-  Future<void> deleteTransactions(List<String> ids) async {
+Future<void> deleteTransaction(String id) async {
+  try {
+    final formData = FormData.fromMap({
+      "transaction_id": id,
+    });
+
     await _dio.delete(
-      "/transactions/delete/",
-      data: {"ids": ids},
+      ApiEndpoints.deleteTransactions,
+      data: formData,
     );
+  } on DioException catch (e) {
+    if (e.response?.statusCode == 404) {
+      // Already deleted or not exists — treat as success
+      return;
+    }
+    rethrow;
   }
+}
 }
