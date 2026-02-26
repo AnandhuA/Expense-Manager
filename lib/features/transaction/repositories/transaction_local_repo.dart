@@ -74,4 +74,25 @@ class TransactionLocalRepo {
       whereArgs: [id],
     );
   }
+
+
+  /// -------- Get Current Month Debit Total ----------
+Future<double> getCurrentMonthDebitTotal() async {
+  final db = await AppDatabase.instance.database;
+
+  final now = DateTime.now();
+  final startOfMonth = DateTime(now.year, now.month, 1);
+
+  final result = await db.rawQuery('''
+    SELECT SUM(amount) as total
+    FROM ${DbTables.transactions}
+    WHERE type = 'debit'
+      AND is_deleted = 0
+      AND timestamp >= ?
+  ''', [startOfMonth.toIso8601String()]);
+
+  final total = result.first['total'];
+
+  return total == null ? 0.0 : (total as num).toDouble();
+}
 }

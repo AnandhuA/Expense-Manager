@@ -1,4 +1,5 @@
 import 'package:expense_manager/core/constants/app_assets.dart';
+import 'package:expense_manager/core/services/notification/notification_service.dart';
 import 'package:expense_manager/core/services/storage/preference_service.dart';
 import 'package:expense_manager/features/dashboard/screens/home_screen.dart';
 import 'package:expense_manager/features/walkthrough/walkthrough_screen.dart';
@@ -21,6 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future<void> _checkIsLogin() async {
     // splash delay
     await Future.delayed(const Duration(seconds: 2));
+    await NotificationService.requestPermission();
 
     // check token
     final token = PreferencesService().token;

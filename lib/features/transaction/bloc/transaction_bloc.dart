@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:equatable/equatable.dart';
+import 'package:expense_manager/core/services/notification/notification_service.dart';
+import 'package:expense_manager/core/services/storage/preference_service.dart';
 import 'package:expense_manager/features/dashboard/bloc/dashboard_bloc.dart';
 import 'package:expense_manager/features/transaction/models/transaction_with_category_model.dart';
 import 'package:expense_manager/features/transaction/repositories/transaction_local_repo.dart';
@@ -12,6 +14,7 @@ part 'transaction_state.dart';
 class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
   final TransactionLocalRepo repo;
   final DashboardBloc dashboardBloc;
+  final PreferencesService preferences = PreferencesService();
   // final _notifier = NotificationService.instance;
 
   TransactionBloc({required this.repo, required this.dashboardBloc})
@@ -39,6 +42,8 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
     Emitter<TransactionState> emit,
   ) async {
     try {
+      final previousTotal = await repo.getCurrentMonthDebitTotal();
+
       await repo.addTransaction(
         amount: event.amount,
         note: event.note,
@@ -46,35 +51,20 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         categoryId: event.categoryId,
       );
 
+      final currentTotal = await repo.getCurrentMonthDebitTotal();
+
+      if (event.type == "debit") {
+        final limit = preferences.alertLimit;
+
+        if (previousTotal <= limit && currentTotal > limit) {
+          await NotificationService.showBudgetAlert(limit);
+        }
+      }
+
       final list = await repo.getTransactions();
-
-
-  // if (event.type == "debit") {
-  //     final now = DateTime.now();
-
-  //     final monthlyExpense = list
-  //         .where((t) =>
-  //             t.type == "debit" &&
-  //             t.timestamp.month == now.month &&
-  //             t.timestamp.year == now.year)
-  //         .fold<double>(0, (sum, t) => sum + t.amount);
-
-  //     final limit = _prefs.alertLimit;
-
-  //     if (monthlyExpense > limit) {
-  //       await _notifier.showLimitAlert(
-  //         limit: limit,
-  //         spent: monthlyExpense,
-  //       );
-  //     }
-  //   }
-
-
       emit(TransactionLoaded(transactions: list));
+
       dashboardBloc.add(const RefreshDashboard());
-
-
-
     } catch (e) {
       emit(TransactionError(e.toString()));
     }

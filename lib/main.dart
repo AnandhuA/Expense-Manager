@@ -1,3 +1,4 @@
+import 'package:expense_manager/core/services/notification/notification_service.dart';
 import 'package:expense_manager/core/services/storage/preference_service.dart';
 import 'package:expense_manager/core/theme/app_theme.dart';
 import 'package:expense_manager/features/auth/bloc/auth_bloc.dart';
@@ -14,6 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await PreferencesService().init();
+  await NotificationService.init();
+
   runApp(const MyApp());
 }
 
