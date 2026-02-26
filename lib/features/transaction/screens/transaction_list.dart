@@ -22,7 +22,14 @@ class TransactionList extends StatelessWidget {
           Center(child: Text(state.message));
         }
         if (state is TransactionLoaded) {
-          return ListView.builder(
+          return state.transactions.isEmpty
+              ? Center(
+                  child: Text(
+                    "No Transactions",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                )
+              : ListView.builder(
             shrinkWrap: shrinkWrap,
             physics: physics,
             padding: EdgeInsets.only(bottom: 100),

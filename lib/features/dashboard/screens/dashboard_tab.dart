@@ -23,7 +23,10 @@ class DashboardTab extends StatelessWidget {
           BlocBuilder<DashboardBloc, DashboardState>(
             builder: (context, state) {
               if (state is DashboardLoaded) {
-                return _dashboardView(state: state);
+                return SizedBox(
+                  height: MQ.height(context),
+                  child: _dashboardView(state: state),
+                );
               } else {
                 return Center(child: Text("Error"));
               }
@@ -101,7 +104,17 @@ class DashboardTab extends StatelessWidget {
 
           //--------------- transation list ----------
           ScreenPadding(
-            child: ListView.builder(
+            child: state.recentTransactions.isEmpty
+                ? Center(
+                    child: Text(
+                      "No Transactions",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                : ListView.builder(
               shrinkWrap: true,
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.only(bottom: 100),
