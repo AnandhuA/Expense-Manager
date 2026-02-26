@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <application
-        android:label="expense_manager"
+        android:label="ExpenseManager"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -30,6 +32,23 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <receiver
+            android:name="me.carda.awesome_notifications.core.broadcasters.receivers.NotificationDismissedReceiver"
+            android:exported="true"/>
+
+        <receiver
+            android:name="me.carda.awesome_notifications.core.broadcasters.receivers.NotificationCreatedReceiver"
+            android:exported="true"/>
+
+        <receiver
+            android:name="me.carda.awesome_notifications.core.broadcasters.receivers.NotificationDisplayedReceiver"
+            android:exported="true"/>
+
+        <receiver
+            android:name="me.carda.awesome_notifications.core.broadcasters.receivers.ActionReceiver"
+            android:exported="true"/>
+
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility and
